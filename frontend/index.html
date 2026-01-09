@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Resume Upload</title>
+</head>
+<body>
+
+<h2>Upload Resume</h2>
+
+<form id="uploadForm">
+  <input type="file" id="resume" name="resume" />
+  <button type="submit">Upload</button>
+</form>
+
+<script>
+  const form = document.getElementById("uploadForm");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const fileInput = document.getElementById("resume");
+    const file = fileInput.files[0];
+
+    if (!file) {
+      alert("Bhai file select kar");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("resume", file); // 👈 SAME NAME AS MULTER
+
+    const response = await fetch("http://localhost:5000/api/resume/upload", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+    console.log(data);
+    alert("Upload ho gaya bhai");
+  });
+</script>
+
+</body>
+</html>
