@@ -29,7 +29,7 @@
     const formData = new FormData();
     formData.append("resume", file); // 👈 SAME NAME AS MULTER
 
-    const response = await fetch("http://localhost:5000/api/resume/upload", {
+    const response = await fetch("http://localhost:5001/api/resume/upload", {
       method: "POST",
       body: formData
     });
